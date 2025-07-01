@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/r-el/CRUD-on-text-using-fs/issues"
   },
-  "homepage": "https://github.com/r-el/CRUD-on-text-using-fs#readme"
+  "homepage": "https://github.com/r-el/CRUD-on-text-using-fs#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
