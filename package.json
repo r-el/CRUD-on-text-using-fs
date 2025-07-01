@@ -1,0 +1,25 @@
+{
+  "name": "simple-crud-on-text",
+  "version": "1.0.0",
+  "description": "simple CRUD on text file using async fs module (only with callbacks)",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r-el/CRUD-on-text-using-fs.git"
+  },
+  "keywords": [
+    "crud-on-text"
+  ],
+  "author": "REL",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/r-el/CRUD-on-text-using-fs/issues"
+  },
+  "homepage": "https://github.com/r-el/CRUD-on-text-using-fs#readme"
+}
