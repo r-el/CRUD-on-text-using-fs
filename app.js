@@ -1,4 +1,3 @@
-import rl  from 'readline-sync';
+import { startApp } from "./ui/userUI.js";
 
-let name = rl.question("Enter your name: ");
-console.log("Your name is: " + name);
+startApp();
