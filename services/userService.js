@@ -35,4 +35,21 @@ export function createUser(username, onComplete) {
   });
 }
 
+/**
+ * Updates a username in the users list
+ * @param {string} oldName - The current username
+ * @param {string} newName - The new username
+ * @param {Function} onComplete - Callback called with (error)
+ */
+export function updateUser(oldName, newName, onComplete) {
+  readUsers((err, userList) => {
+    if (err) return onComplete(err);
+    const idx = userList.indexOf(oldName);
+    if (idx === -1) return onComplete(new Error("User not found"));
+    if (userList.includes(newName)) return onComplete(new Error("New username already exists"));
+    userList[idx] = newName;
+    writeUsers(userList, onComplete);
+  });
+}
+
 // Additional CRUD functions (create, update, delete) will be implemented here
