@@ -1,5 +1,5 @@
 import rl from "readline-sync";
-import { showUsers, createUser } from "../services/userService.js";
+import { showUsers, createUser, updateUser } from "../services/userService.js";
 
 // Helper: prompt for username, and ensure it's not empty
 function promptForUsername(promptText = "Enter new username: ") {
@@ -32,10 +32,19 @@ function createUserAction() {
 }
 
 function updateUserAction() {
-  // Not implemented yet
-  console.log("Update User - Not implemented yet.");
-  rl.keyInPause("Press any key to continue...");
-  displayMainMenu();
+  showUsers(() => {
+    const oldName = promptForUsername("Enter current username to update: ");
+    const newName = promptForUsername();
+    updateUser(oldName, newName, (err) => {
+      if (err) {
+        console.error("Error updating user:", err.message);
+      } else {
+        console.log("User updated successfully!");
+      }
+      rl.keyInPause("Press any key to continue...");
+      displayMainMenu();
+    });
+  });
 }
 
 function deleteUserAction() {
