@@ -1,4 +1,4 @@
-import { readUsers } from "./userFileService.js";
+import { readUsers, writeUsers } from "./userFileService.js";
 
 /**
  * Shows all users from file with async callback pattern
@@ -16,6 +16,22 @@ export function showUsers(onComplete) {
     }
     // Call callback when display is complete
     if (onComplete) onComplete();
+  });
+}
+
+/**
+ * Creates a new user and saves to file, only if not exists
+ * @param {string} username - The username to add
+ * @param {Function} onComplete - Callback called with (error)
+ */
+export function createUser(username, onComplete) {
+  readUsers((err, userList) => {
+    if (err) return onComplete(err);
+    if (userList.includes(username)) {
+      return onComplete(new Error("User already exists"));
+    }
+    userList.push(username);
+    writeUsers(userList, onComplete);
   });
 }
 

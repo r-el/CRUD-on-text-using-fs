@@ -1,53 +1,70 @@
-import rl from 'readline-sync';
-import { showUsers } from '../services/userService.js';
+import rl from "readline-sync";
+import { showUsers, createUser } from "../services/userService.js";
+
+// Helper: prompt for username, and ensure it's not empty
+function promptForUsername() {
+  return rl.question("Enter new username: ", {
+    limit: (input) => !!input.trim(), // !! converts to boolean
+    limitMessage: "Username cannot be empty.",
+  });
+}
 
 function showUsersAction() {
-  console.log('\n=== Users List ===');
+  console.log("\n=== Users List ===");
   showUsers(() => {
-    console.log('==================\n');
-    rl.keyInPause('Press any key to continue...');
+    console.log("==================\n");
+    rl.keyInPause("Press any key to continue...");
     displayMainMenu();
   });
 }
 
 function createUserAction() {
-  console.log('Create User - Not implemented yet.');
-  rl.keyInPause('Press any key to continue...');
-  displayMainMenu();
+  const username = promptForUsername();
+  createUser(username, (err) => {
+    if (err) {
+      console.error("Error creating user:", err.message);
+    } else {
+      console.log("User created successfully!");
+    }
+    rl.keyInPause("Press any key to continue...");
+    displayMainMenu();
+  });
 }
 
 function updateUserAction() {
-  console.log('Update User - Not implemented yet.');
-  rl.keyInPause('Press any key to continue...');
+  // Not implemented yet
+  console.log("Update User - Not implemented yet.");
+  rl.keyInPause("Press any key to continue...");
   displayMainMenu();
 }
 
 function deleteUserAction() {
-  console.log('Delete User - Not implemented yet.');
-  rl.keyInPause('Press any key to continue...');
+  // Not implemented yet
+  console.log("Delete User - Not implemented yet.");
+  rl.keyInPause("Press any key to continue...");
   displayMainMenu();
 }
 
 const menuOptions = [
-  { name: 'Show Users', action: showUsersAction },
-  { name: 'Create User', action: createUserAction },
-  { name: 'Update User', action: updateUserAction },
-  { name: 'Delete User', action: deleteUserAction }
+  { name: "Show Users", action: showUsersAction },
+  { name: "Create User", action: createUserAction },
+  { name: "Update User", action: updateUserAction },
+  { name: "Delete User", action: deleteUserAction },
 ];
 
 function displayMainMenu() {
-  const menuNames = menuOptions.map(option => option.name);
-  const selectedIdx = rl.keyInSelect(menuNames, 'Choose action:', {cancel: 'Exit'});
-  
+  const menuNames = menuOptions.map((option) => option.name);
+  const selectedIdx = rl.keyInSelect(menuNames, "Choose action:", { cancel: "Exit" });
+
   if (selectedIdx === -1) {
-    console.log('Goodbye!');
+    console.log("Goodbye!");
     return;
   }
-  
+
   menuOptions[selectedIdx].action();
 }
 
 export function startApp() {
-  console.log('Welcome to the User Manager!');
+  console.log("Welcome to the User Manager!");
   displayMainMenu();
 }
