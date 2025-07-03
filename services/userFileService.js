@@ -32,12 +32,12 @@ export function readUsers(onComplete) {
   });
 }
 
-// /**
-//  * Writes user array to file, replacing all content.
-//  * Saves the array as a JSON string.
-//  * @param {string[]} userList - Array of users to save
-//  * @param {Function} onComplete - Called with (error)
-//  */
-// export function writeUsers(userList, onComplete) {
-//   fs.writeFile(USERS_FILE, JSON.stringify(userList, null, 2), onComplete);
-// }
+/**
+ * Writes user array to file, replacing all content.
+ * Saves the array as a JSON string.
+ * @param {string[]} userList - Array of users to save
+ * @param {Function} onComplete - Called with (error)
+ */
+export function writeUsers(userList, onComplete) {
+  fs.writeFile(USERS_FILE, JSON.stringify(userList, null, 2), onComplete);
+}
