@@ -1,5 +1,5 @@
 import rl from "readline-sync";
-import { showUsers, createUser, updateUser } from "../services/userService.js";
+import { showUsers, createUser, updateUser, deleteUser } from "../services/userService.js";
 
 // Helper: prompt for username, and ensure it's not empty
 function promptForUsername(promptText = "Enter new username: ") {
@@ -48,10 +48,18 @@ function updateUserAction() {
 }
 
 function deleteUserAction() {
-  // Not implemented yet
-  console.log("Delete User - Not implemented yet.");
-  rl.keyInPause("Press any key to continue...");
-  displayMainMenu();
+  showUsers(() => {
+    const username = promptForUsername("Enter username to delete: ");
+    deleteUser(username, (err) => {
+      if (err) {
+        console.error("Error deleting user:", err.message);
+      } else {
+        console.log("User deleted successfully!");
+      }
+      rl.keyInPause("Press any key to continue...");
+      displayMainMenu();
+    });
+  });
 }
 
 const menuOptions = [
