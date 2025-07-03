@@ -2,8 +2,8 @@ import rl from "readline-sync";
 import { showUsers, createUser } from "../services/userService.js";
 
 // Helper: prompt for username, and ensure it's not empty
-function promptForUsername() {
-  return rl.question("Enter new username: ", {
+function promptForUsername(promptText = "Enter new username: ") {
+  return rl.question(promptText, {
     limit: (input) => !!input.trim(), // !! converts to boolean
     limitMessage: "Username cannot be empty.",
   });
