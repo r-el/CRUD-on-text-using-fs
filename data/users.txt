@@ -1,4 +1,1 @@
-Ariel
-Yoni
-Moshe
-Nissim
+["Ariel", "Yoni", "Nissim", "Moshe"]
