@@ -1,1 +1,6 @@
-["Ariel", "Yoni", "Nissim", "Moshe"]
+[
+  "Ariel",
+  "Yoni",
+  "Nissim",
+  "Moshe"
+]
