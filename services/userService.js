@@ -52,4 +52,17 @@ export function updateUser(oldName, newName, onComplete) {
   });
 }
 
-// Additional CRUD functions (create, update, delete) will be implemented here
+/**
+ * Deletes a user from the users list
+ * @param {string} username - The username to delete
+ * @param {Function} onComplete - Callback called with (error)
+ */
+export function deleteUser(username, onComplete) {
+  readUsers((err, userList) => {
+    if (err) return onComplete(err);
+    const idx = userList.indexOf(username);
+    if (idx === -1) return onComplete(new Error("User not found"));
+    userList.splice(idx, 1);
+    writeUsers(userList, onComplete);
+  });
+}
